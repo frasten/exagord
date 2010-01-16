@@ -21,7 +21,6 @@ def getPuntiEsagono(centro, raggio):
 
 def draw_polygon(cr, Points):
 	cr.set_line_width(0.01)
-	#cr.set_source_rgb(28, 184, 198)
 	cr.set_source_rgb(0.11, 0.72, 0.77)
 
 	cr.move_to(Points[0][0], Points[0][1])
