@@ -4,7 +4,7 @@ import gtk
 
 
 class MainWindow:
-	width, height = 800, 600
+	width, height = 900, 500
 
 	def delete_event(self, widget, event, data=None):
 		print "delete event occurred"
@@ -15,7 +15,7 @@ class MainWindow:
 		self.window.connect("destroy", self.destroy)
 		self.window.set_default_size(self.width, self.height)
 		self.window.set_title("Exagord")
-		
+
 		# Sets the border width of the window.
 		self.window.set_border_width(10)
 
@@ -24,12 +24,38 @@ class MainWindow:
 
 		# Main Container
 		self.mainbox = gtk.HBox()
-		button = gtk.Button("PanelL")
-		self.mainbox.pack_start(button, False, False, 0)
-		button2 = gtk.Button("HarmonicTable")
-		self.mainbox.pack_start(button2, True, False, 0)
-		button3 = gtk.Button("PanelR")
-		self.mainbox.pack_start(button3, False, False, 0)
+
+		# LEFT PANEL
+		panelL = gtk.Frame("Left Panel")
+		buttonBox = gtk.VButtonBox()
+		buttonBox.set_border_width(5)
+
+		buttonBox.set_layout(gtk.BUTTONBOX_START)
+		buttonBox.set_spacing(20)
+
+		button1 = gtk.Button(stock=gtk.STOCK_OK)
+		buttonBox.add(button1)
+		button2 = gtk.Button(stock=gtk.STOCK_OK)
+		buttonBox.add(button2)
+		button3 = gtk.Button(stock=gtk.STOCK_OK)
+		buttonBox.add(button3)
+		button4 = gtk.Button(stock=gtk.STOCK_OK)
+		buttonBox.add(button4)
+		buttonBox.set_size_request(150, -1)  # set the left panel width
+
+		panelL.add(buttonBox)
+
+		self.mainbox.pack_start(panelL, False, False, 0)
+
+
+		# CENTRAL PANEL
+		centralPanel = gtk.Frame("Central Panel")
+		self.mainbox.pack_start(centralPanel, True, True, 0)
+
+
+		# RIGHT PANEL
+		panelR = gtk.Frame("Right Panel")
+		self.mainbox.pack_start(panelR, False, False, 0)
 
 
 		self.window.add(self.mainbox)
