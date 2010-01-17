@@ -85,7 +85,7 @@ class MainWindow:
 
 		# **** Midi Ch. **** 
 		centralTopbar.pack_start(gtk.Label("Midi Ch. "), False, False, 0)
-		midiChAdj = gtk.Adjustment(0, -8, 8, 1, 2, 0.0)
+		midiChAdj = gtk.Adjustment(1, 1, 16, 1, 2, 0.0)
 		midiCh = gtk.SpinButton(midiChAdj, 0, 0)
 		midiCh.set_wrap(True) # TODO: ???
 		centralTopbar.pack_start(midiCh, False, True, 0)
