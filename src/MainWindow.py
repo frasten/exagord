@@ -67,28 +67,35 @@ class MainWindow:
 
 		# TopBar
 		centralTopbar = gtk.HBox()
+		centralTopbar.set_border_width(5)
 		
 		# **** TPM **** 
 		# value, min, max, increment, pageIncrement, boh?
-		centralTopbar.pack_start(gtk.Label("TPM "), False, False, 0)
+		tpmContainer = gtk.HBox()  # Container for TPM stuff
+		tpmContainer.pack_start(gtk.Label("TPM:"), False, False, 0)
 		tpmAdj = gtk.Adjustment(60, 1, 300, 1, 10, 0.0)
 		tpm = gtk.SpinButton(tpmAdj, 0, 0)
 		tpm.set_wrap(True)
-		centralTopbar.pack_start(tpm, False, True, 0)
+		tpmContainer.pack_start(tpm, False, False, 5)
+		centralTopbar.pack_start(tpmContainer, False, False, 10)
 
-		# **** Octave **** 
-		centralTopbar.pack_start(gtk.Label("Octave "), False, False, 0)
+		# **** Octave ****
+		octaveContainer = gtk.HBox()  # Container for Octave stuff
+		octaveContainer.pack_start(gtk.Label("Octave:"), False, False, 3)
 		octaveAdj = gtk.Adjustment(0, -8, 8, 1, 2, 0.0)
 		octave = gtk.SpinButton(octaveAdj, 0, 0)
 		octave.set_wrap(True) # TODO: ???
-		centralTopbar.pack_start(octave, False, True, 0)
+		octaveContainer.pack_start(octave, False, False, 5)
+		centralTopbar.pack_start(octaveContainer, False, False, 10)
 
-		# **** Midi Ch. **** 
-		centralTopbar.pack_start(gtk.Label("Midi Ch. "), False, False, 0)
+		# **** Midi Ch. ****
+		midiChContainer = gtk.HBox()  # Container for MIDI Channel stuff
+		midiChContainer.pack_start(gtk.Label("Midi Ch:"), False, False, 3)
 		midiChAdj = gtk.Adjustment(1, 1, 16, 1, 2, 0.0)
 		midiCh = gtk.SpinButton(midiChAdj, 0, 0)
 		midiCh.set_wrap(True) # TODO: ???
-		centralTopbar.pack_start(midiCh, False, True, 0)
+		midiChContainer.pack_start(midiCh, False, False, 5)
+		centralTopbar.pack_start(midiChContainer, False, False, 10)
 
 
 		# Aggiungo la topbar al pannello centrale
