@@ -75,7 +75,6 @@ class MainWindow:
 		tpmContainer.pack_start(gtk.Label("TPM:"), False, False, 0)
 		tpmAdj = gtk.Adjustment(60, 1, 300, 1, 10, 0.0)
 		tpm = gtk.SpinButton(tpmAdj, 0, 0)
-		tpm.set_wrap(True)
 		tpmContainer.pack_start(tpm, False, False, 5)
 		centralTopbar.pack_start(tpmContainer, False, False, 10)
 
@@ -84,7 +83,6 @@ class MainWindow:
 		octaveContainer.pack_start(gtk.Label("Octave:"), False, False, 3)
 		octaveAdj = gtk.Adjustment(0, -8, 8, 1, 2, 0.0)
 		octave = gtk.SpinButton(octaveAdj, 0, 0)
-		octave.set_wrap(True) # TODO: ???
 		octaveContainer.pack_start(octave, False, False, 5)
 		centralTopbar.pack_start(octaveContainer, False, False, 10)
 
@@ -93,7 +91,6 @@ class MainWindow:
 		midiChContainer.pack_start(gtk.Label("Midi Ch:"), False, False, 3)
 		midiChAdj = gtk.Adjustment(1, 1, 16, 1, 2, 0.0)
 		midiCh = gtk.SpinButton(midiChAdj, 0, 0)
-		midiCh.set_wrap(True) # TODO: ???
 		midiChContainer.pack_start(midiCh, False, False, 5)
 		centralTopbar.pack_start(midiChContainer, False, False, 10)
 
