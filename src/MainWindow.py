@@ -2,6 +2,8 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
+from HarmonicTablePanel import HarmonicTablePanel
+
 
 class MainWindow:
 	width, height = 900, 500
@@ -99,7 +101,9 @@ class MainWindow:
 		centralSplitBox.pack_start(centralTopbar, False, False, 0)
 
 		# Harmonic Table
-		centralSplitBox.pack_start(gtk.Button(), True, True, 0)
+		htPanel = HarmonicTablePanel()
+		centralSplitBox.pack_start(htPanel, True, True, 0)
+
 		centralPanel.add(centralSplitBox)
 
 
