@@ -1,2 +1,10 @@
 Example:
 http://www.youtube.com/watch?v=AklKy2NDpqs
+
+Requirements:
+	Under Ubuntu, you must install these packages:
+	* python-gtk2 (I think it should be already installed by default)
+
+	* pyPortMidi:
+	Download the latest .deb version from:
+	http://bitbucket.org/aalex/pyportmidi/downloads/
