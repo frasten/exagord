@@ -1,20 +1,31 @@
 import gtk
 import math
+import numpy
 #import cairo  # Boh, funziona anche senza import!!!
+
+#def getPuntiEsagono(centro, raggio):
+#	angolo = 0
+#	punti = []
+#	for i in range(6):
+#		x = centro[0] + (raggio * math.cos(angolo))
+#		y = centro[0] + (raggio * math.sin(angolo))
+#		punti.append((x, y))
+#		angolo += 2 * math.pi / 6
+#	return punti
 
 def getPuntiEsagono(centro, raggio):
 	angolo = 0
 	punti = []
 	for i in range(6):
 		x = centro[0] + (raggio * math.cos(angolo))
-		y = centro[0] + (raggio * math.sin(angolo))
+		y = centro[1] + (raggio * math.sin(angolo))
 		punti.append((x, y))
 		angolo += 2 * math.pi / 6
 	return punti
 
-def draw_polygon(cr, Points):
+def draw_polygon(cr, Points,colore):
 	cr.set_line_width(0.01)
-	cr.set_source_rgb(0.11, 0.72, 0.77)
+	cr.set_source_rgb(colore[0]/6, colore[1]/1.5, colore[2]/1.5)
 
 	cr.move_to(Points[0][0], Points[0][1])
 	for i in range(1, len(Points)):
@@ -22,16 +33,16 @@ def draw_polygon(cr, Points):
 	cr.close_path()
 	cr.stroke_preserve()
 
-	cr.set_source_rgb(0.66, 0.86, 0.89)
+	cr.set_source_rgb(colore[0], colore[1], colore[2])
 	cr.fill()
 
 
 
-def esagono(texture, centro, raggio):
+def esagono(texture, centro, raggio,colore):
 	cr = texture.cairo_create()
 	cr.scale(300, 300)#texture.get_width(), texture.get_height())
 	punti = getPuntiEsagono(centro, raggio)
-	draw_polygon(cr, punti)
+	draw_polygon(cr, punti,colore)
 
 
 class HarmonicTablePanel(gtk.DrawingArea):
@@ -67,6 +78,14 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		alloc = self.get_allocation()
 		self.window.draw_rectangle(self.get_style().white_gc,
 		                           True, 0, 0, alloc.width, alloc.height)
-		esagono(self.window, (0.25, 0.2), 0.08)
-		esagono(self.window, (0.4, 0.2), 0.08)
-		esagono(self.window, (0.1, 0.4), 0.08)
+		radius=0.08
+		colore=(0.66, 0.86, 0.89)
+		offset=0.1
+		for i in range(-8,8):
+			for j in range(20):
+				#trasformo in un sistema di riferimento esagonale (con gli assi non ortogonali ma a pi/3)
+				x=(i*2/math.sqrt(3)+j*1/math.sqrt(3))*radius*3
+				y=j*radius
+				if (0<x<2) and (0<y<1.3):
+					esagono(self.window, (x,y), radius, colore)
+			
