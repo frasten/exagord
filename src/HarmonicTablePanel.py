@@ -24,7 +24,7 @@ def getPuntiEsagono(centro, raggio):
 
 def draw_polygon(cr, Points,colore):
 	cr.set_line_width(0.01)
-	cr.set_source_rgb(colore[0]/6, colore[1]/1.5, colore[2]/1.5)
+	cr.set_source_rgb(colore[0]-0.26, colore[1]-0.26, colore[2]-0.26)
 
 	cr.move_to(Points[0][0], Points[0][1])
 	for i in range(1, len(Points)):
@@ -78,13 +78,19 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		self.window.draw_rectangle(self.get_style().white_gc,
 		                           True, 0, 0, alloc.width, alloc.height)
 		radius=0.08
-		colore=(0.66, 0.86, 0.89)
 		offset=0.1
-		for i in range(-8,8):
-			for j in range(20):
+		for i in range(-7,8):
+			for j in range(17):
 				#trasformo in un sistema di riferimento esagonale (con gli assi non ortogonali ma a pi/3)
 				x=(i*2/math.sqrt(3)+j*1/math.sqrt(3))*radius*3
 				y=j*radius
+				
 				if (0<x<2) and (0<y<1.3):
+					if (0<j<5):
+						colore=(0.7, 1, 1)
+					elif (5<j<10):
+						colore=(1, 0.7, 1)
+					elif (10<j<20):
+						colore=(1, 1, 0.7)
 					esagono(self.window, (x,y), radius, colore)
 			
