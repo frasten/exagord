@@ -1,6 +1,5 @@
 import gtk
 import math
-import numpy
 #import cairo  # Boh, funziona anche senza import!!!
 
 #def getPuntiEsagono(centro, raggio):
