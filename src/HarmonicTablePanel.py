@@ -59,6 +59,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 
 
 	def expose(self, widget, event):
+		'''Called when the widget is ready'''
 		context = widget.window.cairo_create()
 
 		# set a clip region for the expose event
@@ -96,9 +97,9 @@ class HarmonicTablePanel(gtk.DrawingArea):
 
 		# Hexagon parameters
 		radius = 0.08  # hexagon radius
-		apotema = (radius / 2) * math.sqrt(3)  # needed for drawing the harmonic table correctly
+		apotema = radius * math.sqrt(3) / 2  # needed for drawing the harmonic table correctly
 		dy = apotema  # step length in y direction
-		dx = 4 * dy * math.sin(math.pi / 3)  # step length in x direction
+		dx = 3 * radius  # step length in x direction
 
 		# Start to generate the harmonic table from top-left corner
 		currentSemitone = startSemitone
@@ -107,15 +108,15 @@ class HarmonicTablePanel(gtk.DrawingArea):
 			if (i % 2 == 1):
 			# for odd rows...
 				cols = 9
-				offset = apotema
+				xOffset = apotema
 			else:
 			# ...and for even rows
 				cols = 8
-				offset = apotema + (dx / 2)
+				xOffset = apotema + (dx / 2)
 
 			for j in range(cols):  # the number of cols are 8 or 9
 				# Calculate the hexagon center coordinates
-				x = j * dx + offset
+				x = j * dx + xOffset
 				y = i * dy
 
 				# Calculate the current note using the distance in semitones from C1
