@@ -1,0 +1,12 @@
+TODO: choose between several python-midi implementations:
+
+http://www.mxm.dk/products/public/pythonmidi
+http://musickit.sourceforge.net
+http://sndobj.sourceforge.net/
+http://groups.google.com/group/alt.sources/msg/0c5fc523e050c35e?pli=1
+http://trac2.assembla.com/pkaudio/wiki/pyrtmidi
+http://portmedia.sourceforge.net
+http://bitbucket.org/aalex/pyportmidi and http://alumni.media.mit.edu/~harrison/code.html
+http://pypi.python.org/pypi/pyalsa/1.1
+http://pp.com.mx/python/alsaseq/project.html
+
