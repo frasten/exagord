@@ -16,8 +16,8 @@ def getHexagonVertices(center, radius):
 
 
 def drawPolygon(cr, points, color):
-	'''Draws a polygon'''
-	# Outline
+	'''Draws a generic polygon'''
+	# Darker outline
 	cr.set_line_width(0.01)
 	cr.set_source_rgb(color[0] - 0.26, color[1] - 0.26, color[2] - 0.26)
 
@@ -32,7 +32,7 @@ def drawPolygon(cr, points, color):
 	cr.fill()
 
 
-def hexagon(texture, center, radius, color, note, octave):
+def drawHexagon(texture, center, radius, color, note, octave):
 	cr = texture.cairo_create()
 	cr.scale(300, 300)  # texture.get_width(), texture.get_height())
 	vertices = getHexagonVertices(center, radius)
@@ -48,7 +48,7 @@ def hexagon(texture, center, radius, color, note, octave):
 	cr.set_source_rgb(color[0] - 0.26, color[1] - 0.26, color[2] - 0.26)
 	cr.set_font_size(0.04)
 	cr.move_to(center[0] - 0.015, center[1] + 0.05)
-	cr.show_text( int.__str__(octave))
+	cr.show_text(int.__str__(octave))
 
 
 class HarmonicTablePanel(gtk.DrawingArea):
@@ -98,13 +98,13 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		radius = 0.08  # hexagon radius
 		apotema = (radius / 2) * math.sqrt(3)  # needed for drawing the harmonic table correctly
 		dy = apotema  # step length in y direction
-		dx = 4 * dy * math.sin(math.pi/3)  # step length in x direction
+		dx = 4 * dy * math.sin(math.pi / 3)  # step length in x direction
 
 		# Start to generate the harmonic table from top-left corner
 		currentSemitone = startSemitone
 
 		for i in range(19):  # 19 rows...
-			if (math.fmod(i,2) == 1):
+			if (math.fmod(i, 2) == 1):
 			# for odd rows...
 				cols = 9
 				offset = apotema
@@ -119,7 +119,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				y = i * dy
 
 				# Calculate the current note using the distance in semitones from C1
-				note = float.__int__(math.fmod(currentSemitone,12))
+				note = float.__int__(math.fmod(currentSemitone, 12))
 
 				# Calculate the note name
 				noteName = noteArray[note]
@@ -132,13 +132,13 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				color = octaveColors[octave - 1]
 
 				# Drawing hexagon
-				hexagon(self.window, (x + radius, y + radius), radius, color, noteName, octave)
+				drawHexagon(self.window, (x + radius, y + radius), radius, color, noteName, octave)
 
 				# Along columns, the hexagon differs by one semitone
-				currentSemitone = currentSemitone + 1
+				currentSemitone += 1
 			'''
 			Along rows, -12 semitones from the last note of previous row, to
 			the first of the current row.
-			NOTE: change the parameter "-12" to create some freaky harmonic table :)
+			NOTE: change the parameter "12" to create some freaky harmonic table :)
 			'''
-			currentSemitone = currentSemitone - 12
+			currentSemitone -= 12
