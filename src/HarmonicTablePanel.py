@@ -48,7 +48,7 @@ def drawHexagon(texture, center, radius, color, note, octave):
 	cr.set_source_rgb(color[0] - 0.26, color[1] - 0.26, color[2] - 0.26)
 	cr.set_font_size(0.04)
 	cr.move_to(center[0] - 0.015, center[1] + 0.05)
-	cr.show_text(int.__str__(octave))
+	cr.show_text(str(octave))
 
 
 class HarmonicTablePanel(gtk.DrawingArea):
@@ -119,7 +119,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				y = i * dy
 
 				# Calculate the current note using the distance in semitones from C1
-				note = float.__int__(currentSemitone % 12)
+				note = currentSemitone % 12
 
 				# Calculate the note name
 				noteName = noteArray[note]
