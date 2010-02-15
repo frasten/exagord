@@ -3,8 +3,5 @@
 from MainWindow import MainWindow
 
 
-print("Hi! I'm Exagord, your next-generation sequencer!")
-print("See you when I'm ready! :-P")
-
 win = MainWindow()
 win.main()
