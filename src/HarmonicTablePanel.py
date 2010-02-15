@@ -104,7 +104,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		currentSemitone = startSemitone
 
 		for i in range(19):  # 19 rows...
-			if (math.fmod(i, 2) == 1):
+			if (i % 2 == 1):
 			# for odd rows...
 				cols = 9
 				offset = apotema
@@ -119,7 +119,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				y = i * dy
 
 				# Calculate the current note using the distance in semitones from C1
-				note = float.__int__(math.fmod(currentSemitone, 12))
+				note = float.__int__(currentSemitone % 12)
 
 				# Calculate the note name
 				noteName = noteArray[note]
