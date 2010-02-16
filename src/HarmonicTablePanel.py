@@ -1,6 +1,5 @@
 import gtk
 import math
-import string
 
 def getHexagonVertices(center, radius):
 	'''Returns a list of coordinates of the vertices of an hexagon, given
@@ -93,15 +92,16 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		f = open('./config/colorschemes.svn', 'r')
 		for line in f:
 			if not (line[0] == "#" or line == ""):
-				nome, r1, g1, b1, r2, g2, b2, r3, g3, b3, r4, g4, b4, r5, g5, b5, r6, g6, b6, r7, g7, b7 = line.split(",")
-				colorSchemeArray[nome] = ((string._float(r1), string._float(g1), string._float(b1)),
-				(string._float(r2), string._float(g2), string._float(b2)),
-				(string._float(r3), string._float(g3), string._float(b3)),
-				(string._float(r4), string._float(g4), string._float(b4)),
-				(string._float(r5), string._float(g5), string._float(b5)),
-				(string._float(r6), string._float(g6), string._float(b6)),
-				(string._float(r7), string._float(g7), string._float(b7)))
+				schema, r1, g1, b1, r2, g2, b2, r3, g3, b3, r4, g4, b4, r5, g5, b5, r6, g6, b6, r7, g7, b7 = line.split(",")
+				colorSchemeArray[schema] = ((float(r1), float(g1), float(b1)),
+				(float(r2), float(g2), float(b2)),
+				(float(r3), float(g3), float(b3)),
+				(float(r4), float(g4), float(b4)),
+				(float(r5), float(g5), float(b5)),
+				(float(r6), float(g6), float(b6)),
+				(float(r7), float(g7), float(b7)))
 		f.close()
+		
 		# Array of colors for octave visualization
 		# Try: 'rainbow', 'violetmono', 'orangemono'
 		octaveColors = colorSchemeArray['violetmono']
