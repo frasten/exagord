@@ -84,10 +84,10 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		alloc = self.get_allocation()
 		self.window.draw_rectangle(self.get_style().white_gc,
 		                           True, 0, 0, alloc.width, alloc.height)
-		
+
 		# Creating color scheme dictionary
 		colorSchemeArray = {}
-		
+
 		# Read color scheme CSV file
 		f = open('./config/colorschemes.svn', 'r')
 		for line in f:
@@ -101,11 +101,11 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				(float(r6), float(g6), float(b6)),
 				(float(r7), float(g7), float(b7)))
 		f.close()
-		
+
 		# Array of colors for octave visualization
 		# Try: 'rainbow', 'violetmono', 'orangemono'
-		octaveColors = colorSchemeArray['violetmono']
-		
+		octaveColors = colorSchemeArray['rainbow']
+
 		# Array of note name (NOTE: the index is the distance in semitones from C)
 		noteArray = ("C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B")
 		# The C7 on top-left corner differs form C1 by 84 semitones
