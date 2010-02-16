@@ -101,7 +101,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				(string._float(r5), string._float(g5), string._float(b5)),
 				(string._float(r6), string._float(g6), string._float(b6)),
 				(string._float(r7), string._float(g7), string._float(b7)))
-		
+		f.close()
 		# Array of colors for octave visualization
 		# Try: 'rainbow', 'violetmono', 'orangemono'
 		octaveColors = colorSchemeArray['violetmono']
