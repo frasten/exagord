@@ -101,8 +101,8 @@ class MainWindow:
 		centralSplitBox.pack_start(centralTopbar, False, False, 0)
 
 		# Harmonic Table
-		htPanel = HarmonicTablePanel()
-		centralSplitBox.pack_start(htPanel, True, True, 0)
+		self.htPanel = HarmonicTablePanel()
+		centralSplitBox.pack_start(self.htPanel, True, True, 0)
 
 		centralPanel.add(centralSplitBox)
 

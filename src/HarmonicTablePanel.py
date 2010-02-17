@@ -32,21 +32,23 @@ def drawPolygon(cr, points, color):
 
 
 def drawHexagon(texture, center, radius, color, note, octave):
-	cr = texture.cairo_create()
-	cr.scale(300, 300)  # texture.get_width(), texture.get_height())
+	cr = texture.window.cairo_create()
+	minSize = min(texture.allocation.width, texture.allocation.height)
+	cr.scale(minSize, minSize)
+
 	vertices = getHexagonVertices(center, radius)
 	drawPolygon(cr, vertices, color)
 
 	# Write note name
 	cr.set_source_rgb(0.1, 0.1, 0.1)
-	cr.set_font_size(0.05)
-	cr.move_to(center[0] - 0.02 * len(note), center[1] + 0.01)
+	cr.set_font_size(0.04)
+	cr.move_to(center[0] - 0.014 * len(note), center[1] + 0.005)
 	cr.show_text(note)
 
 	# Write octave number
 	cr.set_source_rgb(color[0] - 0.26, color[1] - 0.26, color[2] - 0.26)
-	cr.set_font_size(0.04)
-	cr.move_to(center[0] - 0.015, center[1] + 0.05)
+	cr.set_font_size(0.03)
+	cr.move_to(center[0] - 0.01, center[1] + 0.035)
 	cr.show_text(str(octave))
 
 
@@ -112,7 +114,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		startSemitone = 84
 
 		# Hexagon parameters
-		radius = 0.08  # hexagon radius
+		radius = 0.056  # hexagon radius
 		apotema = radius * math.sqrt(3) / 2  # needed for drawing the harmonic table correctly
 		dy = apotema  # step length in y direction
 		dx = 3 * radius  # step length in x direction
@@ -149,7 +151,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				color = octaveColors[octave - 1]
 
 				# Drawing hexagon
-				drawHexagon(self.window, (x + radius, y + radius), radius, color, noteName, octave)
+				drawHexagon(self, (x + radius, y + radius), radius, color, noteName, octave)
 
 				# Along columns, the hexagon differs by one semitone
 				currentSemitone += 1
