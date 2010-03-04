@@ -41,7 +41,7 @@ def drawHexagon(texture, center, radius, color, note, octave):
 
 	# Write note name
 	cr.set_source_rgb(0.1, 0.1, 0.1)
-	cr.set_font_size(0.04)
+	cr.set_font_size(0.035)
 	cr.move_to(center[0] - 0.014 * len(note), center[1] + 0.005)
 	cr.show_text(note)
 
