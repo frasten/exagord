@@ -150,7 +150,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		class Cell or something similar.
 		Every Cell *knows* its position, its color etc., so it will be easy
 		to redraw only the cell when a note moves onto it.
-		So this for loop should be moved somewhere else, and should initialize
+		So this `for` loop should be moved somewhere else, and should initialize
 		every cell and its parameters.
 		Here we should have only something like HarmonicTable.repaint(), that
 		calls every cell's repaint() method.
