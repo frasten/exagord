@@ -14,10 +14,10 @@ def getHexagonVertices(center, radius):
 	return vertices
 
 
-def drawPolygon(cr, points, color):
+def drawPolygon(cr, points, color, radius):
 	'''Draws a generic polygon'''
 	# Darker outline
-	cr.set_line_width(0.01)
+	cr.set_line_width( radius / 8 )
 	cr.set_source_rgb(color[0] - 0.26, color[1] - 0.26, color[2] - 0.26)
 
 	cr.move_to(points[0]['x'], points[0]['y'])
@@ -33,18 +33,18 @@ def drawPolygon(cr, points, color):
 
 def drawHexagon(cr, center, radius, color, note, octave):
 	vertices = getHexagonVertices(center, radius)
-	drawPolygon(cr, vertices, color)
+	drawPolygon(cr, vertices, color, radius)
 
 	# Write note name
 	cr.set_source_rgb(0.1, 0.1, 0.1)
-	cr.set_font_size(0.035)
-	cr.move_to(center[0] - 0.014 * len(note), center[1] + 0.005)
+	cr.set_font_size(0.7 * radius)
+	cr.move_to(center[0] - (0.25 * radius) * len(note), center[1] + (0.1 * radius))
 	cr.show_text(note)
 
 	# Write octave number
 	cr.set_source_rgb(color[0] - 0.26, color[1] - 0.26, color[2] - 0.26)
-	cr.set_font_size(0.03)
-	cr.move_to(center[0] - 0.01, center[1] + 0.035)
+	cr.set_font_size(0.5 * radius)
+	cr.move_to(center[0] - (0.19 * radius), center[1] + (0.64 * radius))
 	cr.show_text(str(octave))
 
 
@@ -110,13 +110,20 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		startSemitone = 84
 
 		# Hexagon parameters
-		radius = 0.056  # hexagon radius
+		radius = 0.036  # hexagon radius
 		apotema = radius * math.sqrt(3) / 2  # needed for drawing the harmonic table correctly
 		dy = apotema  # step length in y direction
 		dx = 3 * radius  # step length in x direction
 
 		# Start to generate the harmonic table from top-left corner
 		currentSemitone = startSemitone
+
+		cr = self.window.cairo_create()
+		maxSize = max(self.allocation.width, self.allocation.height)
+		cr.scale(maxSize, maxSize)
+		print("width", self.allocation.width);
+		print("height", self.allocation.height);
+		print();
 
 		for i in range(19):  # 19 rows...
 			if (i % 2 == 1):
@@ -127,10 +134,6 @@ class HarmonicTablePanel(gtk.DrawingArea):
 			# ...and for even rows
 				cols = 8
 				xOffset = apotema + (dx / 2)
-
-			cr = self.window.cairo_create()
-			maxSize = max(self.allocation.width, self.allocation.height)
-			cr.scale(maxSize, maxSize)
 
 			for j in range(cols):  # the number of cols are 8 or 9
 				# Calculate the hexagon center coordinates
