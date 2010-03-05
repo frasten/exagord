@@ -119,11 +119,25 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		currentSemitone = startSemitone
 
 		cr = self.window.cairo_create()
-		maxSize = max(self.allocation.width, self.allocation.height)
-		cr.scale(maxSize, maxSize)
-		print("width", self.allocation.width);
-		print("height", self.allocation.height);
-		print();
+		width = self.allocation.width
+		height = self.allocation.height
+		# Ratio between width and height of the texture, measured empirically.
+		wanted_w_h_ratio = 1.52
+		'''
+		How much should be the size of the maximum square around the HT?
+		We have 2 cases:
+		a) ratio >= wanted: (width greater than height) => I want to leave
+		   empty space on the right, so it will be = height * wanted.
+		b) ratio < wanted: (height greater than width) => I want to leave
+		   empty space below, so it will be = width.
+		'''
+		current_w_h_ratio = float(width) / float(height)
+		if current_w_h_ratio >= wanted_w_h_ratio:
+			texture_size = height * wanted_w_h_ratio
+		else:
+			texture_size = width
+
+		cr.scale(texture_size, texture_size)
 
 		for i in range(19):  # 19 rows...
 			if (i % 2 == 1):
