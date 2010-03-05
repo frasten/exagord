@@ -31,11 +31,7 @@ def drawPolygon(cr, points, color):
 	cr.fill()
 
 
-def drawHexagon(texture, center, radius, color, note, octave):
-	cr = texture.window.cairo_create()
-	minSize = min(texture.allocation.width, texture.allocation.height)
-	cr.scale(minSize, minSize)
-
+def drawHexagon(cr, center, radius, color, note, octave):
 	vertices = getHexagonVertices(center, radius)
 	drawPolygon(cr, vertices, color)
 
@@ -132,6 +128,10 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				cols = 8
 				xOffset = apotema + (dx / 2)
 
+			cr = self.window.cairo_create()
+			maxSize = max(self.allocation.width, self.allocation.height)
+			cr.scale(maxSize, maxSize)
+
 			for j in range(cols):  # the number of cols are 8 or 9
 				# Calculate the hexagon center coordinates
 				x = j * dx + xOffset
@@ -151,7 +151,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 				color = octaveColors[octave - 1]
 
 				# Drawing hexagon
-				drawHexagon(self, (x + radius, y + radius), radius, color, noteName, octave)
+				drawHexagon(cr, (x + radius, y + radius), radius, color, noteName, octave)
 
 				# Along columns, the hexagon differs by one semitone
 				currentSemitone += 1
