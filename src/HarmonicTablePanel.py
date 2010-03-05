@@ -87,7 +87,10 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		colorSchemeArray = {}
 
 		# Read color scheme from a CSV (comma separated values) file
+		# TODO: never use relative paths, but use some config dir inside
+		# user's home or somewhere system-wide (N.B. consider portability!!!)
 		f = open('./config/colorschemes.csv', 'r')
+		# TODO: add some try/catch and fail gracefully on errors.
 		for line in f:
 			if not (line[0] == "#" or line == ""):
 				schema, r1, g1, b1, r2, g2, b2, r3, g3, b3, r4, g4, b4, r5, g5, b5, r6, g6, b6, r7, g7, b7 = line.split(",")
