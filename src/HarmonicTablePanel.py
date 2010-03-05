@@ -108,6 +108,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		octaveColors = colorSchemeArray['rainbow']
 
 		# Array of note name (NOTE: the index is the distance in semitones from C)
+		# TODO: use the unicode flat sigh: U+266D
 		noteArray = ("C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B")
 		# The C7 on top-left corner differs form C1 by 84 semitones
 		# TODO: don't leave this as a magic number. Move it to a constant.
