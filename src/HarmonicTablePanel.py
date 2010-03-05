@@ -110,9 +110,11 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		# Array of note name (NOTE: the index is the distance in semitones from C)
 		noteArray = ("C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B")
 		# The C7 on top-left corner differs form C1 by 84 semitones
+		# TODO: don't leave this as a magic number. Move it to a constant.
 		startSemitone = 84
 
 		# Hexagon parameters
+		# TODO: don't leave this as a magic number. Move it to a constant.
 		radius = 0.036  # hexagon radius
 		apotema = radius * math.sqrt(3) / 2  # needed for drawing the harmonic table correctly
 		dy = apotema  # step length in y direction
@@ -125,6 +127,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		width = self.allocation.width
 		height = self.allocation.height
 		# Ratio between width and height of the texture, measured empirically.
+		# TODO: this sucks a little, it should be saved outside, like C's constants.
 		wanted_w_h_ratio = 1.52
 		'''
 		How much should be the size of the maximum square around the HT?
