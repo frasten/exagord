@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import gtk
 import math
 
@@ -108,8 +110,8 @@ class HarmonicTablePanel(gtk.DrawingArea):
 		octaveColors = colorSchemeArray['rainbow']
 
 		# Array of note name (NOTE: the index is the distance in semitones from C)
-		# TODO: use the unicode flat sigh: U+266D
-		noteArray = ("C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B")
+		# TODO: in Python 3.0 u"..." syntax will be removed. Just use "..."
+		noteArray = ("C",u"D♭","D",u"E♭","E","F",u"G♭","G",u"A♭","A",u"B♭","B")
 		# The C7 on top-left corner differs form C1 by 84 semitones
 		# TODO: don't leave this as a magic number. Move it to a constant.
 		startSemitone = 84
