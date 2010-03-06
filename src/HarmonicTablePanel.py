@@ -111,7 +111,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 
 		# Array of note name (NOTE: the index is the distance in semitones from C)
 		# TODO: in Python 3.0 u"..." syntax will be removed. Just use "..."
-		noteArray = ("C",u"D♭","D",u"E♭","E","F",u"G♭","G",u"A♭","A",u"B♭","B")
+		noteArray = ("C",u"C♯","D",u"E♭","E","F",u"F♯","G",u"A♭","A",u"B♭","B")
 		# The C7 on top-left corner differs form C1 by 84 semitones
 		# TODO: don't leave this as a magic number. Move it to a constant.
 		startSemitone = 84
