@@ -74,7 +74,7 @@ class HarmonicTablePanel(gtk.DrawingArea):
 	def redraw_canvas(self):
 		if self.window:
 			alloc = self.get_allocation()
-			rect = gdk.Rectangle(alloc.x, alloc.y, alloc.width, alloc.height)
+			rect = gtk.gdk.Rectangle(alloc.x, alloc.y, alloc.width, alloc.height)
 			self.window.invalidate_rect(rect, True)
 			self.window.process_updates(True)
 
